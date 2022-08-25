@@ -48,3 +48,4 @@ public class Contact {
 	@UpdateTimestamp
 	private LocalDate  updatedDate;
 }
+
