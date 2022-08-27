@@ -34,7 +34,12 @@ public class ContactServiceImpl implements ContactServiceI{
 
 	@Override
 	public Contact getContact(Integer contactid) {
-		// TODO Auto-generated method stub
+		boolean existsById = contactRepo.existsById(contactid);
+		if(existsById) {
+		Contact contact = contactRepo.findById(contactid).get();
+		
+		return contact;
+		}
 		return null;
 	}
 
