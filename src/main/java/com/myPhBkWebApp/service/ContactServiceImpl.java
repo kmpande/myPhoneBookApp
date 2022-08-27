@@ -45,8 +45,8 @@ public class ContactServiceImpl implements ContactServiceI{
 
 	@Override
 	public List<Contact> getAllContact() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Contact> findAll = contactRepo.findAll();
+		return findAll;
 	}
 
 	@Override
