@@ -6,4 +6,5 @@ import com.myPhBkWebApp.model.Contact;
 
 public interface ContactRepo extends JpaRepository<Contact, Integer> {
 
+	Contact findByContactName(String contactName);
 }

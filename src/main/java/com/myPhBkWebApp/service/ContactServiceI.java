@@ -23,4 +23,9 @@ public  interface ContactServiceI {
 	
 	void deleteContact(Integer contactId);
 	
+	//search a contact by name
+	Contact searchContactbyName(String contactName);
+	
+	
+	
 }

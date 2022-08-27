@@ -1,6 +1,8 @@
 package com.myPhBkWebApp.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,8 +47,13 @@ public class ContactServiceImpl implements ContactServiceI{
 
 	@Override
 	public List<Contact> getAllContact() {
-		List<Contact> findAll = contactRepo.findAll();
-		return findAll;
+		List<Contact> contacts = contactRepo.findAll();
+		
+		Stream<Contact> stream = contacts.stream();
+        Stream<Contact> filter = stream.filter(contact -> contact.getActiveSwitch() =='Y');
+        		List<Contact> collect = filter.collect(Collectors.toList());
+
+		return collect;
 	}
 
 	@Override
@@ -58,6 +65,14 @@ public class ContactServiceImpl implements ContactServiceI{
 			
 		}
 		
+	}
+
+	@Override
+	public Contact searchContactbyName(String contactName) {
+		Contact findByContactName = contactRepo.findByContactName(contactName);
+		if (findByContactName !=null)
+		return findByContactName;
+		return null;
 	}
 
 }
