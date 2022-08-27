@@ -23,7 +23,12 @@ public class ContactServiceImpl implements ContactServiceI{
 
 	@Override
 	public Contact editContact(Contact contact, Integer contactId) {
-		// TODO Auto-generated method stub
+		boolean existsById = contactRepo.existsById(contactId);
+		if (existsById){
+			contact.setContactId(contactId);
+			Contact updated = contactRepo.save(contact);
+			return updated;
+		}
 		return null;
 	}
 
