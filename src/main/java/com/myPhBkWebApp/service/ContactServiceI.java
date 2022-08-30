@@ -26,6 +26,7 @@ public  interface ContactServiceI {
 	//search a contact by name
 	Contact searchContactbyName(String contactName);
 	
+	boolean softdeleteContact(Integer contactId);
 	
 	
 }

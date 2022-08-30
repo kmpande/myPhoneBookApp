@@ -1,6 +1,7 @@
 package com.myPhBkWebApp.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -60,8 +61,10 @@ public class ContactServiceImpl implements ContactServiceI{
 	public void deleteContact(Integer contactId) {
 		boolean existsById = contactRepo.existsById(contactId);
 		if(existsById){
-			Contact contact = contactRepo.findById(contactId).get();
-			contactRepo.delete(contact);
+//			Contact contact = contactRepo.findById(contactId).get();
+//			contactRepo.delete(contact);
+			
+			contactRepo.deleteById(contactId);
 			
 		}
 		
@@ -73,6 +76,20 @@ public class ContactServiceImpl implements ContactServiceI{
 		if (findByContactName !=null)
 		return findByContactName;
 		return null;
+	}
+
+	@Override
+	public boolean softdeleteContact(Integer contactId) {
+		Optional<Contact> contact = contactRepo.findById(contactId);
+
+		if (contact.isPresent()) {
+			Contact contact2 = contact.get();
+			contact2.setActiveSwitch('N');
+			contactRepo.save(contact2);
+			return true;
+		} else
+			return false;
+		
 	}
 
 }
