@@ -1,5 +1,7 @@
 package com.myPhBkWebApp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +47,14 @@ public class ContactController {
 	}
 	
 	//get all contacts
-	
+	@GetMapping("/")
+	public ResponseEntity<List<Contact>> getAllContacts(){
+		
+		List<Contact> allContact = contactServiceI.getAllContact();
+		
+		return ResponseEntity.ok(allContact);
+		
+		
+	}
 	
 }
