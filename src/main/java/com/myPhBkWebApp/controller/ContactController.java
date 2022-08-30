@@ -71,7 +71,26 @@ public class ContactController {
 		
 		return ResponseEntity.ok(searchContactbyName);
 			
+	}@DeleteMapping("/{contactId}")
+	public ResponseEntity<String> deleteContactById(@PathVariable Integer contactId){
+		
+		contactServiceI.deleteContact(contactId);
+		return ResponseEntity.ok("RecordDeleted Successfully");
+		
+		}
+	
+	//soft delete
+	@DeleteMapping("/{contactId}")
+	public ResponseEntity<String> softdeleteContactById(@PathVariable Integer contactId){
+		
+		boolean softdeleteContact = contactServiceI.softdeleteContact(contactId);
+		
+		if (softdeleteContact)
+		return ResponseEntity.ok("RecordDeleted Successfully");
+		return new ResponseEntity<String> ("Record Not Found",HttpStatus.BAD_REQUEST);
+	
 	}
+
 	
-	
+
 }
